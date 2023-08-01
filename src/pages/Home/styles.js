@@ -53,7 +53,7 @@ export const Header = styled.header`
         border: 2px solid ${({ theme }) => theme.colors.primary.main};
         border-radius: .25rem;
 
-        transition: all 2s ease-in;
+        transition: all .5s ease-in;
 
         &:hover {
             background: ${({ theme }) => theme.colors.primary.main};
