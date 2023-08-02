@@ -15,5 +15,6 @@ export default {
             200: '#BCBCBC',
             900: '#222222',
         },
+        background: '#FAFAFA',
     },
 };
