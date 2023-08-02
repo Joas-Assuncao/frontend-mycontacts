@@ -80,7 +80,7 @@ export function Home() {
                     </div>
 
                     <div className="actions">
-                        <Link href="/edit/3">
+                        <Link to="/edit/3">
                             <img src={edit} alt="Editar" />
                         </Link>
                         <button type="button">

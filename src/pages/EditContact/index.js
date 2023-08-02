@@ -1,9 +1,14 @@
-import PageHeader from '../../components/PageHeader';
+import { ContactForm } from '../../components/ContactForm';
+import { PageHeader } from '../../components/PageHeader';
 
 export function EditContact() {
     return (
-        <PageHeader
-            title="Editar contato"
-        />
+        <>
+            <PageHeader
+                title="Editar contato"
+            />
+
+            <ContactForm buttonLabel="Salvar alterações" />
+        </>
     );
 }
