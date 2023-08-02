@@ -11,7 +11,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": "latest",
+        "ecmaVersion": 6,
         "sourceType": "module"
     },
     "plugins": [
@@ -25,6 +25,8 @@
         "no-tabs": "off",
         "linebreak-style": "off",
         "import/prefer-default-export": "off",
-        "react/jsx-indent-props": "off"
+        "react/jsx-indent-props": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off"
     }
 }
