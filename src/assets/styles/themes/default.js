@@ -16,5 +16,10 @@ export default {
             900: '#222222',
         },
         background: '#FAFAFA',
+        danger: {
+            light: '#F97171',
+            main: '#FC5050',
+            dark: '#F63131',
+        },
     },
 };
