@@ -18,15 +18,16 @@
         "react"
     ],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "indent": ["error", 4],
         "react/react-in-jsx-scope": "off",
+        "react/jsx-indent-props": "off",
+        "react/jsx-no-bind": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/jsx-indent": [0, 4, { "checkAttributes": true, "indentLogicalExpressions": true }],
+        "indent": ["error", 4],
         "no-tabs": "off",
         "linebreak-style": "off",
-        "import/prefer-default-export": "off",
-        "react/jsx-indent-props": "off",
         "import/no-named-as-default": "off",
+        "import/prefer-default-export": "off",
         "import/no-named-as-default-member": "off"
     }
 }
