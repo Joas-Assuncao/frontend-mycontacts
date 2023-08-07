@@ -51,10 +51,6 @@ export function ContactForm({ buttonLabel }) {
 
     function handleSubmit(event) {
         event.preventDefault();
-
-        // console.log({
-        //     name, phone, email, category,
-        // });
     }
 
     return (
