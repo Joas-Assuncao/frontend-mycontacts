@@ -23,15 +23,36 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-indent-props": "off",
         "react/jsx-no-bind": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/jsx-indent": [0, 4, { "checkAttributes": true, "indentLogicalExpressions": true }],
-        "indent": ["error", 4],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "react/jsx-indent": [
+            0,
+            4,
+            {
+                "checkAttributes": true,
+                "indentLogicalExpressions": true
+            }
+        ],
+        "indent": [
+            "error",
+            4
+        ],
         "no-tabs": "off",
         "linebreak-style": "off",
         "import/no-named-as-default": "off",
         "import/prefer-default-export": "off",
         "import/no-named-as-default-member": "off",
-        "react-hooks/rules-of-hook": "error",
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "comma-dangle": "off",
+        "class-methods-use-this": "off",
+        "space-before-function-paren": "off"
     }
 }
