@@ -1,3 +1,5 @@
+import APIError from '../../errors/APIError';
+
 class HttpClient {
     constructor (baseURL) {
         this.baseURL = baseURL;
@@ -6,7 +8,22 @@ class HttpClient {
     async get(path) {
         const response = await fetch(`${this.baseURL}/${path}`);
 
-        return response.json();
+        let body = null;
+
+        const contentType = response.headers.get('Content-Type');
+
+        if (contentType.includes('application/json')) {
+            body = await response.json();
+        }
+
+        if (response.ok) {
+            return body;
+        }
+
+        throw new APIError(
+            response,
+            body,
+        );
     }
 
     async post(path, body) {
@@ -29,7 +46,7 @@ class HttpClient {
 
     async delete(path, id) {
         const response = await fetch(`${this.baseURL}/${path}/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
         });
 
         return response;
