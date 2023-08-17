@@ -12,7 +12,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 6,
+        "ecmaVersion": 8,
         "sourceType": "module"
     },
     "plugins": [
@@ -53,6 +53,7 @@
         "react-hooks/exhaustive-deps": "warn",
         "comma-dangle": "off",
         "class-methods-use-this": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "no-console": "off"
     }
 }
