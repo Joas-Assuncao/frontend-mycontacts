@@ -33,12 +33,16 @@ export const InputSearchContainer = styled.div`
 export const Header = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: ${({ hasError }) => (hasError ? 'flex-end' : 'space-between')};
 
     margin-top: 2rem;
+    padding-bottom: 16px;
+
+    border-bottom: 2px solid ${({ theme }) => theme.colors.gray[100]};
 
     strong {
         font-size: 1.5rem;
+        color: ${({ theme }) => theme.colors.white.medium};
     }
 
     a {
@@ -62,11 +66,9 @@ export const Header = styled.header`
     }
 `;
 
-export const ListContainer = styled.div`
+export const ListHeader = styled.header`
     margin-top: 1.5rem;
-    
-    header {
-        margin-bottom: .5rem;
+    margin-bottom: .5rem;
 
         button.sort-button {
             display: flex;
@@ -84,8 +86,15 @@ export const ListContainer = styled.div`
                 font-size: 1rem;
                 font-weight: bold;
             }
+
+            img {
+                transform: ${({ orderBy }) => (
+        orderBy === 'asc' ? 'rotateX(180deg)' : 'rotateX(0deg)'
+    )};
+
+                transition: transform .2s ease-in;
+            }
         }
-    }
 `;
 
 export const Card = styled.div`
@@ -113,6 +122,7 @@ export const Card = styled.div`
 
             strong {
                 font-size: 1rem;
+                color: ${({ theme }) => theme.colors.gray[200]}
             }
 
             small {
@@ -144,6 +154,26 @@ export const Card = styled.div`
 
         button {
             margin-left: .5rem;
+        }
+    }
+`;
+
+export const ErrorContainer = styled.div`
+    display: flex;
+    align-items: center;
+
+    margin-top: 16px;
+
+    .details {
+        margin-left: 24px;
+
+        strong {
+            display: block;
+            
+            font-size: 22px;
+            color: ${({ theme }) => theme.colors.danger.main};
+
+            margin-bottom: 8px;
         }
     }
 `;
