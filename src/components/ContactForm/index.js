@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import Button from '../Button';
+import { Button } from '../Button';
 import { FormGroup } from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 
 import { ButtonContainer, Form } from './styles';
 
-import isEmailValid from '../../utils/isEmailValid';
-import useErrors from '../../hooks/useErrors';
-import formatPhone from '../../utils/formatPhone';
+import { isEmailValid } from '../../utils/isEmailValid';
+import { useErrors } from '../../hooks/useErrors';
+import { formatPhone } from '../../utils/formatPhone';
 
 export function ContactForm({ buttonLabel }) {
     const [name, setName] = useState('');
