@@ -4,7 +4,7 @@ import {
     Card, Container, ErrorContainer, Header, InputSearchContainer, ListHeader
 } from './styles';
 
-import Button from '../../components/Button';
+import { Button } from '../../components/Button';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
@@ -33,7 +33,6 @@ export function Home() {
             const contactsList = await ContactService.listContacts(orderBy);
 
             setHasError(false);
-            console.log(contactsList);
 
             setContacts(contactsList);
         } catch {
