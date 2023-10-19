@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function useErrors() {
+export function useErrors() {
     const [errors, setErrors] = useState([]);
 
     function setError({ field, message }) {
