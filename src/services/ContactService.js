@@ -1,13 +1,21 @@
 import HttpClient from './utils/HttpClient';
 
-class ContactService {
+class ContactsService {
     constructor () {
         this.httpClient = new HttpClient('http://localhost:3001');
     }
 
-    async listContacts(orderBy = 'asc') {
-        return this.httpClient.get(`contacts?orderBy=${orderBy}`);
+    listContacts(orderBy = 'asc') {
+        return this.httpClient.get(`contacts?orderBy=${orderBy}`, {
+            headers: {
+                Authorization: 'mytoken',
+            }
+        });
+    }
+
+    createContact(body) {
+        return this.httpClient.post('contacts', body);
     }
 }
 
-export default new ContactService();
+export default new ContactsService();

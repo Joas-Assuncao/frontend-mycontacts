@@ -12,7 +12,7 @@ import { isEmailValid } from '../../utils/isEmailValid';
 import { useErrors } from '../../hooks/useErrors';
 import { formatPhone } from '../../utils/formatPhone';
 
-export function ContactForm({ buttonLabel }) {
+export function ContactForm({ buttonLabel, onSubmit }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -63,6 +63,10 @@ export function ContactForm({ buttonLabel }) {
 
     function handleSubmit(event) {
         event.preventDefault();
+
+        onSubmit({
+            name, email, phone, category,
+        });
     }
 
     return (
@@ -121,4 +125,5 @@ export function ContactForm({ buttonLabel }) {
 
 ContactForm.propTypes = {
     buttonLabel: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 };

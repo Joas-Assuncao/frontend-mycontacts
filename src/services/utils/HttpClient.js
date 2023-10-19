@@ -5,34 +5,19 @@ class HttpClient {
         this.baseURL = baseURL;
     }
 
-    async get(path) {
-        const response = await fetch(`${this.baseURL}/${path}`);
-
-        let body = null;
-
-        const contentType = response.headers.get('Content-Type');
-
-        if (contentType.includes('application/json')) {
-            body = await response.json();
-        }
-
-        if (response.ok) {
-            return body;
-        }
-
-        throw new APIError(
-            response,
-            body,
-        );
+    get(path, options = {}) {
+        return this.makeRequest(path, {
+            method: 'GET',
+            headers: options.headers,
+        });
     }
 
-    async post(path, body) {
-        const response = await fetch(`${this.baseURL}/${path}`, {
+    post(path, options = {}) {
+        return this.makeRequest(path, {
             method: 'POST',
-            body: JSON.parse(body),
+            body: options.body,
+            headers: options.headers,
         });
-
-        return response;
     }
 
     async put(path, body, id) {
@@ -50,6 +35,39 @@ class HttpClient {
         });
 
         return response;
+    }
+
+    async makeRequest(path, options) {
+        const headers = new Headers();
+
+        if (options.body) {
+            headers.append('Content-Type', 'application/json');
+        }
+
+        if (options.headers) {
+            Object.entries(options.headers).forEach(([headerName, headerValue]) => {
+                headers.append(headerName, headerValue);
+            });
+        }
+
+        const response = await fetch(`${this.baseURL}${path}`, {
+            method: options.method,
+            body: JSON.stringify(options.body),
+            headers,
+        });
+
+        let responseBody = null;
+
+        const contentType = response.headers.get('Content-Type');
+        if (contentType.includes('application/json')) {
+            responseBody = await response.json();
+        }
+
+        if (response.ok) {
+            return responseBody;
+        }
+
+        throw new APIError(response, responseBody);
     }
 }
 
