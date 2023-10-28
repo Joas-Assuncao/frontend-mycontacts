@@ -35,7 +35,8 @@ export function Home() {
             setHasError(false);
 
             setContacts(contactsList);
-        } catch {
+        } catch (err) {
+            console.error(err);
             setHasError(true);
         } finally {
             setIsLoading(false);
