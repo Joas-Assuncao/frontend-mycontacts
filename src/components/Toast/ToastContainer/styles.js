@@ -6,6 +6,7 @@ export const Container = styled.div`
     bottom: 48px;
     left: 50%;
     transition: translateX(-50%);
+    -moz-transform: translateX(-50%);
 
-    z-index: 2;
+    z-index: 1;
 `;
