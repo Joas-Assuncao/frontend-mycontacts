@@ -86,7 +86,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
                 error={getErrorMessageByFieldName('email')}
             >
                 <Input
-                    // type="email"
+                    type="email"
                     placeholder="E-mail"
                     value={email}
                     error={getErrorMessageByFieldName('email')}
@@ -115,7 +115,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
             </FormGroup>
 
             <ButtonContainer>
-                <Button disabled={!isFormValid}>
+                <Button type="submit" disabled={!isFormValid}>
                     {buttonLabel}
                 </Button>
             </ButtonContainer>
