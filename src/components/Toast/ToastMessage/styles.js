@@ -21,6 +21,8 @@ export const Container = styled.div`
     border-radius: 4px;
     box-shadow: 0 20px 20px -16px rgba(0, 0, 0, .25);
 
+    cursor: pointer;
+
     & + & {
         margin-top: 12px;
     }
