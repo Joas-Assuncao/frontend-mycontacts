@@ -1,11 +1,10 @@
 import { ContactForm } from '../../components/ContactForm';
 import { PageHeader } from '../../components/PageHeader';
-import ContactService from '../../services/ContactService';
+import ContactService from '../../services/ContactsService';
 import { toast } from '../../utils/toast';
 
 export function NewContact() {
     async function handleSubmit(formData) {
-        console.log(formData);
         try {
             const contact = {
                 name: formData.name,
@@ -16,11 +15,17 @@ export function NewContact() {
 
             await ContactService.createContact(contact);
 
-            toast('success', 'Contato salvo com sucesso!');
+            toast({
+                type: 'success',
+                text: 'Contato salvo com sucesso!',
+                duration: 1000,
+            });
         } catch (err) {
-            console.log(err);
-
-            toast('danger', 'Ocorreu um erro ao salvar contato!');
+            toast({
+                type: 'danger',
+                text: 'Ocorreu um erro ao salvar contato!',
+                duration: 3000,
+            });
         }
     }
 
