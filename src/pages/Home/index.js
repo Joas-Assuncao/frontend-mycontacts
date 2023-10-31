@@ -12,7 +12,8 @@ import sad from '../../assets/images/icons/sad.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
 import { Loader } from '../../components/Loader';
-import ContactService from '../../services/ContactService';
+import ContactsService from '../../services/ContactsService';
+import { delay } from '../../utils/delay';
 // import { Modal } from '../../components/Modal';
 
 export function Home() {
@@ -29,8 +30,9 @@ export function Home() {
     async function loadContacts() {
         try {
             setIsLoading(true);
+            await delay(1500);
 
-            const contactsList = await ContactService.listContacts(orderBy);
+            const contactsList = await ContactsService.listContacts(orderBy);
 
             setHasError(false);
 

@@ -1,15 +1,13 @@
 import HttpClient from './utils/HttpClient';
-import { delay } from '../utils/delay';
 
-class CategoryService {
+class CategoriesService {
     constructor () {
         this.httpClient = new HttpClient('http://localhost:3001');
     }
 
-    async listCategories() {
-        await delay(1500);
+    listCategories() {
         return this.httpClient.get('/categories');
     }
 }
 
-export default new CategoryService();
+export default new CategoriesService();

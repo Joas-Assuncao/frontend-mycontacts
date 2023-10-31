@@ -1,6 +1,6 @@
 import { ContactForm } from '../../components/ContactForm';
 import { PageHeader } from '../../components/PageHeader';
-import ContactService from '../../services/ContactsService';
+import ContactsService from '../../services/ContactsService';
 import { toast } from '../../utils/toast';
 
 export function NewContact() {
@@ -13,7 +13,7 @@ export function NewContact() {
                 category_id: formData.categoryId,
             };
 
-            await ContactService.createContact(contact);
+            await ContactsService.createContact(contact);
 
             toast({
                 type: 'success',
