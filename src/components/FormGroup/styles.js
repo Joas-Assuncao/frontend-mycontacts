@@ -8,4 +8,14 @@ export const Container = styled.div`
     small {
         color: ${({ theme }) => theme.colors.danger.main};
     }
+
+    .form-item {
+        position: relative;
+
+        .spinner {
+            position: absolute;
+            right: 16px;
+            top: 18px;
+        }
+    }
 `;

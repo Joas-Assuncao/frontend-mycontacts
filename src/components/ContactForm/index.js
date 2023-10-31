@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '../Button';
 import { FormGroup } from '../FormGroup';
@@ -8,15 +8,19 @@ import Select from '../Select';
 
 import { ButtonContainer, Form } from './styles';
 
-import { isEmailValid } from '../../utils/isEmailValid';
 import { useErrors } from '../../hooks/useErrors';
 import { formatPhone } from '../../utils/formatPhone';
+import { isEmailValid } from '../../utils/isEmailValid';
+import CategoriesService from '../../services/CategoriesService';
+import { delay } from '../../utils/delay';
 
 export function ContactForm({ buttonLabel, onSubmit }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [category, setCategory] = useState('');
+    const [categoryId, setCategoryId] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
     const {
         errors,
@@ -24,6 +28,24 @@ export function ContactForm({ buttonLabel, onSubmit }) {
         removeError,
         getErrorMessageByFieldName,
     } = useErrors();
+
+    useEffect(() => {
+        setIsLoadingCategories(true);
+
+        async function loadCategories() {
+            try {
+                await delay(1500);
+                const categoriesList = await CategoriesService.listCategories();
+
+                setCategories(categoriesList);
+                // eslint-disable-next-line no-empty
+            } catch (err) { } finally {
+                setIsLoadingCategories(false);
+            }
+        }
+
+        loadCategories();
+    }, []);
 
     const isFormValid = (name && errors.length === 0);
 
@@ -65,7 +87,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
         event.preventDefault();
 
         onSubmit({
-            name, email, phone, category,
+            name, email, phone, categoryId,
         });
     }
 
@@ -103,14 +125,17 @@ export function ContactForm({ buttonLabel, onSubmit }) {
                 />
             </FormGroup>
 
-            <FormGroup>
+            <FormGroup isLoading={isLoadingCategories}>
                 <Select
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
+                    value={categoryId}
+                    onChange={(event) => setCategoryId(event.target.value)}
+                    disabled={isLoadingCategories}
                 >
-                    <option value="">Category</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="discord">Discord</option>
+                    <option value="">No category</option>
+
+                    {categories.map((category) => (
+                        <option key={category.id} value={category.id}>{category.name}</option>
+                    ))}
                 </Select>
             </FormGroup>
 

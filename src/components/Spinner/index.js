@@ -8,5 +8,9 @@ export function Spinner({ size }) {
 }
 
 Spinner.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
+};
+
+Spinner.defaultProps = {
+    size: 16,
 };
