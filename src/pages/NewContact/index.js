@@ -1,11 +1,13 @@
 import { ContactForm } from '../../components/ContactForm';
 import { PageHeader } from '../../components/PageHeader';
 import ContactsService from '../../services/ContactsService';
+import { delay } from '../../utils/delay';
 import { toast } from '../../utils/toast';
 
 export function NewContact() {
     async function handleSubmit(formData) {
         try {
+            await delay(1500);
             const contact = {
                 name: formData.name,
                 email: formData.email,

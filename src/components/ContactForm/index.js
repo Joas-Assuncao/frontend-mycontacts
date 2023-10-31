@@ -21,6 +21,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
     const [categoryId, setCategoryId] = useState('');
     const [categories, setCategories] = useState([]);
     const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const {
         errors,
@@ -83,12 +84,21 @@ export function ContactForm({ buttonLabel, onSubmit }) {
         setPhone(formatPhone(event.target.value));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        onSubmit({
+        setIsSubmitting(true);
+
+        await onSubmit({
             name, email, phone, categoryId,
         });
+
+        setCategoryId('');
+        setName('');
+        setEmail('');
+        setPhone('');
+
+        setIsSubmitting(false);
     }
 
     return (
@@ -140,7 +150,7 @@ export function ContactForm({ buttonLabel, onSubmit }) {
             </FormGroup>
 
             <ButtonContainer>
-                <Button type="submit" disabled={!isFormValid}>
+                <Button type="submit" disabled={!isFormValid} isLoading={isSubmitting}>
                     {buttonLabel}
                 </Button>
             </ButtonContainer>
