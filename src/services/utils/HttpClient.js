@@ -15,22 +15,21 @@ class HttpClient {
     post(path, options = {}) {
         return this.makeRequest(path, {
             method: 'POST',
-            body: options.body,
-            headers: options.headers,
+            body: options?.body,
+            headers: options?.headers,
         });
     }
 
-    async put(path, body, id) {
-        const response = await fetch(`${this.baseURL}/${path}/${id}`, {
+    async put(path, options = {}) {
+        return this.makeRequest(path, {
             method: 'PUT',
-            body: JSON.parse(body),
+            body: options?.body,
+            headers: options?.headers,
         });
-
-        return response;
     }
 
-    async delete(path, id) {
-        const response = await fetch(`${this.baseURL}/${path}/${id}`, {
+    async delete(path) {
+        const response = await fetch(`${this.baseURL}${path}`, {
             method: 'DELETE',
         });
 
