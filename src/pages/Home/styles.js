@@ -42,7 +42,7 @@ export const Header = styled.header`
 
     strong {
         font-size: 1.5rem;
-        color: ${({ theme }) => theme.colors.white.medium};
+        color: ${({ theme }) => theme.colors.gray[900]};
     }
 
     a {
@@ -122,7 +122,7 @@ export const Card = styled.div`
 
             strong {
                 font-size: 1rem;
-                color: ${({ theme }) => theme.colors.gray[200]}
+                color: ${({ theme }) => theme.colors.gray[900]}
             }
 
             small {

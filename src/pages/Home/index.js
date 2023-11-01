@@ -14,6 +14,7 @@ import trash from '../../assets/images/icons/trash.svg';
 import { Loader } from '../../components/Loader';
 import ContactsService from '../../services/ContactsService';
 import { delay } from '../../utils/delay';
+import { formatPhone } from '../../utils/formatPhone';
 // import { Modal } from '../../components/Modal';
 
 export function Home() {
@@ -132,7 +133,7 @@ export function Home() {
                                             )}
                                         </div>
                                         <span>{contact.email}</span>
-                                        <span>{contact.phone}</span>
+                                        <span>{formatPhone(contact.phone)}</span>
                                     </div>
 
                                     <div className="actions">
