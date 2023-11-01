@@ -34,11 +34,17 @@ export const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
     useImperativeHandle(ref, () => ({
         setFieldValues: (contact) => {
-            setName(contact.name);
-            setEmail(contact.email);
-            setPhone(formatPhone(contact.phone));
-            setCategoryId(contact.categoryId);
-        }
+            setName(contact.name ?? '');
+            setEmail(contact.email ?? '');
+            setPhone(formatPhone(contact.phone ?? ''));
+            setCategoryId(contact.category_id ?? '');
+        },
+        resetForm: () => {
+            setName('');
+            setEmail('');
+            setPhone('');
+            setCategoryId('');
+        },
     }));
 
     useEffect(() => {
@@ -103,11 +109,6 @@ export const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
         await onSubmit({
             name, email, phone, categoryId,
         });
-
-        setCategoryId('');
-        setName('');
-        setEmail('');
-        setPhone('');
 
         setIsSubmitting(false);
     }
