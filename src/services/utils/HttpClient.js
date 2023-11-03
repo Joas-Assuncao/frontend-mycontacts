@@ -5,14 +5,14 @@ class HttpClient {
         this.baseURL = baseURL;
     }
 
-    get(path, options = {}) {
+    get(path, options) {
         return this.makeRequest(path, {
             method: 'GET',
-            headers: options.headers,
+            headers: options?.headers,
         });
     }
 
-    post(path, options = {}) {
+    post(path, options) {
         return this.makeRequest(path, {
             method: 'POST',
             body: options?.body,
@@ -20,7 +20,7 @@ class HttpClient {
         });
     }
 
-    async put(path, options = {}) {
+    async put(path, options) {
         return this.makeRequest(path, {
             method: 'PUT',
             body: options?.body,
@@ -28,12 +28,11 @@ class HttpClient {
         });
     }
 
-    async delete(path) {
-        const response = await fetch(`${this.baseURL}${path}`, {
+    async delete(path, options) {
+        return this.makeRequest(path, {
             method: 'DELETE',
+            headers: options?.headers,
         });
-
-        return response;
     }
 
     async makeRequest(path, options) {
@@ -58,7 +57,7 @@ class HttpClient {
         let responseBody = null;
 
         const contentType = response.headers.get('Content-Type');
-        if (contentType.includes('application/json')) {
+        if (contentType?.includes('application/json')) {
             responseBody = await response.json();
         }
 
