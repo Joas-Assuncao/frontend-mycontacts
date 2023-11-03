@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { ContactForm } from '../../components/ContactForm';
 import { Loader } from '../../components/Loader';
 import { PageHeader } from '../../components/PageHeader';
+// import { useIsMounted } from '../../hooks/useIsMounted';
+import { useSafeAsyncAction } from '../../hooks/useSafeAsyncAction';
 
 import ContactsService from '../../services/ContactsService';
 import { delay } from '../../utils/delay';
@@ -17,6 +19,8 @@ export function EditContact() {
 
     const { id } = useParams();
     const history = useHistory();
+    // const isMounted = useIsMounted();
+    const runSafeAsyncAction = useSafeAsyncAction();
 
     useEffect(() => {
         async function loadContact() {
@@ -26,22 +30,27 @@ export function EditContact() {
                 await delay(1500);
                 const contactData = await ContactsService.getContactById(id);
 
-                contactFormRef.current.setFieldValues(contactData);
+                runSafeAsyncAction(() => {
+                    contactFormRef.current.setFieldValues(contactData);
 
-                setIsLoading(false);
-                setContactName(contactData.name);
-            } catch (err) {
-                toast({
-                    text: 'Contato não encontrado!',
-                    type: 'danger',
-                    duration: 5000,
+                    setIsLoading(false);
+                    setContactName(contactData.name);
                 });
-                history.push('/');
+            } catch (err) {
+                runSafeAsyncAction(() => {
+                    toast({
+                        text: 'Contato não encontrado!',
+                        type: 'danger',
+                        duration: 5000,
+                    });
+
+                    history.push('/');
+                });
             }
         }
 
         loadContact();
-    }, [id, history]);
+    }, [id, history, runSafeAsyncAction]);
 
     async function handleSubmit(formData) {
         await delay(1500);
